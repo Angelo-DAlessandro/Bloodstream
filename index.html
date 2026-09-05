@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Bloodstream — One Cell. One Mission.</title>
 <style>
 :root{
@@ -114,6 +114,114 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#040609
 @media (max-width:700px){
   .hudStats{gap:10px;font-size:10px}.hudStats b{font-size:14px}.message{font-size:32px}.homeTitle{font-size:38px}
 }
+
+.rotateNotice{display:none}
+.mobileControls{display:none}
+.mobileStick,.mobilePulseBtn{touch-action:none;-webkit-user-select:none;user-select:none}
+
+@media (max-width: 950px) and (orientation: portrait){
+  body{overflow:hidden}
+  #game{min-height:100dvh}
+  #game .screenWrap{display:none}
+  .rotateNotice{
+    display:grid;place-items:center;min-height:100dvh;
+    padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right))
+            max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left));
+    background:radial-gradient(circle at center,#1a070b,#050507 62%);
+    text-align:center
+  }
+  .rotateNotice strong{display:block;font-family:Georgia,serif;font-size:30px;font-weight:500;margin-top:8px}
+  .rotateNotice span{display:block;color:#aeb4be;margin-top:8px;font-size:14px}
+  .rotateIcon{font-size:48px;color:#ff4a44}
+}
+
+@media (max-width: 950px) and (orientation: landscape){
+  html,body{overflow:hidden;background:#030406}
+  #game{
+    width:100vw;min-height:100dvh;height:100dvh;
+    padding:0;margin:0;overflow:hidden;
+    padding-left:env(safe-area-inset-left);
+    padding-right:env(safe-area-inset-right)
+  }
+  #game .screenWrap{max-width:none;width:100%;height:100%;padding:0}
+  #game .shell{
+    width:100%;height:100%;border:0;border-radius:0;
+    display:block;position:relative;background:#030406
+  }
+  #game .gameCanvasWrap{
+    position:absolute;inset:0;background:#030406
+  }
+  #game canvas{
+    width:100%;height:100%;object-fit:fill;aspect-ratio:auto;
+    display:block
+  }
+  #game .gameBottom{display:none}
+  .mobileControls{display:block;position:absolute;inset:0;pointer-events:none;z-index:8}
+  .mobileStick{
+    pointer-events:auto;position:absolute;
+    left:max(18px,env(safe-area-inset-left));
+    bottom:max(18px,env(safe-area-inset-bottom));
+    width:132px;height:132px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.18);
+    background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.11),rgba(255,255,255,.025) 58%,rgba(0,0,0,.12));
+    box-shadow:inset 0 0 26px rgba(0,0,0,.42),0 10px 24px rgba(0,0,0,.24);
+    backdrop-filter:blur(5px)
+  }
+  .mobileStick::before,.mobileStick::after{
+    content:"";position:absolute;background:rgba(255,255,255,.08)
+  }
+  .mobileStick::before{left:50%;top:14px;bottom:14px;width:1px}
+  .mobileStick::after{top:50%;left:14px;right:14px;height:1px}
+  .mobileKnob{
+    position:absolute;left:50%;top:50%;width:56px;height:56px;border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle at 35% 30%,#ff9a90,#dc2029 58%,#7e0d15);
+    border:2px solid rgba(255,255,255,.28);
+    box-shadow:0 8px 20px rgba(0,0,0,.32),0 0 18px rgba(255,74,68,.28)
+  }
+  .mobilePulseBtn{
+    pointer-events:auto;position:absolute;
+    right:max(22px,env(safe-area-inset-right));
+    bottom:max(28px,env(safe-area-inset-bottom));
+    width:92px;height:92px;border-radius:50%;
+    border:2px solid rgba(117,220,255,.75);
+    color:#dff8ff;background:radial-gradient(circle,rgba(67,184,230,.34),rgba(9,36,50,.76));
+    font-weight:900;font-size:15px;letter-spacing:.08em;
+    box-shadow:0 0 28px rgba(90,208,255,.26),inset 0 0 18px rgba(90,208,255,.15)
+  }
+  .mobilePulseBtn:active{transform:scale(.94)}
+  .hudTop{
+    left:max(10px,env(safe-area-inset-left));
+    right:max(10px,env(safe-area-inset-right));
+    top:max(8px,env(safe-area-inset-top));
+    gap:8px
+  }
+  .hudPanel{
+    padding:7px 9px;border-radius:11px;background:rgba(7,9,14,.56)
+  }
+  .hudStats{gap:9px;font-size:8px;letter-spacing:.08em}
+  .hudStats b{font-size:11px}
+  .pips{margin-top:4px;gap:3px}
+  .pip{width:20px;height:5px}
+  .message{top:13%;font-size:30px}
+  .progressRow{
+    left:170px;
+    right:132px;
+    bottom:max(12px,env(safe-area-inset-bottom))
+  }
+  .waveTag{font-size:8px;padding:6px 8px}
+  .legend{display:none}
+  .scorePop{top:24%;font-size:14px}
+}
+
+@media (max-width: 740px) and (orientation: landscape){
+  .mobileStick{width:112px;height:112px}
+  .mobileKnob{width:48px;height:48px}
+  .mobilePulseBtn{width:78px;height:78px;font-size:12px}
+  .progressRow{left:142px;right:108px}
+  .hudStats{gap:6px}
+}
+
 </style>
 </head>
 <body>
@@ -212,6 +320,13 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#040609
   </section>
 
   <section id="game">
+    <div id="rotateNotice" class="rotateNotice">
+      <div>
+        <div class="rotateIcon">↻</div>
+        <strong>Rotate your iPhone</strong>
+        <span>Bloodstream is designed for landscape play.</span>
+      </div>
+    </div>
     <div class="screenWrap">
       <div class="shell">
         <div class="gameCanvasWrap">
@@ -237,6 +352,10 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#040609
             </div>
           </div>
           <div id="message" class="message">DON'T GET CAUGHT</div>
+          <div class="mobileControls">
+            <div id="mobileStick" class="mobileStick"><div id="mobileKnob" class="mobileKnob"></div></div>
+            <button id="mobilePulseBtn" class="mobilePulseBtn" type="button">PULSE</button>
+          </div>
           <div id="scorePop" class="scorePop">+50</div>
           <div class="legend">ATP = speed · C = carnitine · V = vitamin C · G = glutathione</div>
           <div class="progressRow">
@@ -301,6 +420,9 @@ const canvas = $('#gameCanvas');
 const ctx = canvas.getContext('2d');
 const touchPad = $('#touchPad');
 const touchKnob = $('#touchKnob');
+const mobileStick = $('#mobileStick');
+const mobileKnob = $('#mobileKnob');
+const mobilePulseBtn = $('#mobilePulseBtn');
 const message = $('#message');
 const scorePop = $('#scorePop');
 const progressBar = $('#progressBar');
@@ -750,6 +872,26 @@ function resetTouch(){
   touchKnob.style.transform = 'translate(-50%,-50%)';
   updateKeys();
 }
+function moveMobileStick(cx,cy){
+  const rect = mobileStick.getBoundingClientRect();
+  const mx = rect.left + rect.width/2;
+  const my = rect.top + rect.height/2;
+  let dx = cx - mx, dy = cy - my;
+  const max = rect.width * 0.31;
+  const d = Math.hypot(dx,dy) || 1;
+  if(d > max){ dx = dx/d*max; dy = dy/d*max; }
+  input.x = dx/max;
+  input.y = dy/max;
+  mobileKnob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+}
+function resetMobileStick(){
+  touchState.active = false;
+  touchState.id = null;
+  input.x = 0; input.y = 0;
+  mobileKnob.style.transform = 'translate(-50%,-50%)';
+  updateKeys();
+}
+
 
 function update(dt){
   if(paused) return;
@@ -1092,6 +1234,23 @@ touchPad.addEventListener('pointerdown', e=>{
 });
 touchPad.addEventListener('pointermove', e=>{ if(touchState.active && touchState.id === e.pointerId) moveTouch(e.clientX, e.clientY); });
 ['pointerup','pointercancel'].forEach(ev=>touchPad.addEventListener(ev, e=>{ if(touchState.id === e.pointerId) resetTouch(); }));
+mobileStick.addEventListener('pointerdown', e=>{
+  touchState.active = true;
+  touchState.id = e.pointerId;
+  mobileStick.setPointerCapture?.(e.pointerId);
+  moveMobileStick(e.clientX,e.clientY);
+});
+mobileStick.addEventListener('pointermove', e=>{
+  if(touchState.active && touchState.id === e.pointerId) moveMobileStick(e.clientX,e.clientY);
+});
+['pointerup','pointercancel'].forEach(ev=>mobileStick.addEventListener(ev, e=>{
+  if(touchState.id === e.pointerId) resetMobileStick();
+}));
+mobilePulseBtn.addEventListener('pointerdown', e=>{
+  e.preventDefault();
+  if(state) usePulse();
+});
+
 })();
 </script>
 </body>
