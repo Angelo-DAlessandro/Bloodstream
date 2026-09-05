@@ -1,0 +1,29 @@
+BLOODSTREAM — SCIENTIFIC DESIGN NOTE
+
+Bloodstream is intended as a playful, accessible representation of red blood cell biology and transfusion medicine.
+
+Biologically grounded concepts represented in the current prototype:
+• erythroid maturation and marrow egress
+• red-cell deformability
+• pulmonary oxygen loading
+• systemic oxygen unloading
+• pulsatile cardiac flow
+• oxidative stress
+• osmotic stress
+• microvascular constraint
+• splenic filtration
+• erythrophagocytic risk
+• inflammatory / complement-like hazards
+• cold-storage stress
+• additive-solution support
+• transfusion and post-transfusion oxygen delivery
+
+Deliberate abstractions:
+• organ geometry is schematic
+• physiological time is compressed
+• individual red cells do not actively steer in vivo
+• hazards are exaggerated or spatially stylized
+• immune and drug interactions are simplified
+• scoring and energy mechanics are game systems, not physiological measurements
+
+The objective is not to simulate circulation quantitatively, but to make core red-cell concepts intuitive and memorable.

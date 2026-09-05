@@ -1,0 +1,17 @@
+GITHUB PAGES QUICK DEPLOY
+
+Recommended repository structure:
+
+Bloodstream/
+├── index.html
+├── bloodstream_banner.png
+└── README.md
+
+GitHub:
+Settings → Pages → Deploy from a branch → main → /(root) → Save
+
+Then share:
+https://YOUR-USERNAME.github.io/Bloodstream/
+
+If putting this inside another GitHub Pages repository:
+https://YOUR-USERNAME.github.io/REPOSITORY/Bloodstream/
